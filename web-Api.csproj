@@ -16,4 +16,12 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\amaxw\OneDrive\Documentos\Max_Tools\Repositories\web-Api\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\amaxw\OneDrive\Documentos\Max_Tools\Repositories\web-Api\.editorconfig" />
+  </ItemGroup>
+
 </Project>

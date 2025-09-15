@@ -37,7 +37,6 @@ namespace web_Api.Migrations
                     ImagemUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Estoque = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
                     CategoriaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

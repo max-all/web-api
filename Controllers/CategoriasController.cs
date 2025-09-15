@@ -73,7 +73,7 @@ public class CategoriasController : ControllerBase
     {
         if (id != categoria.Id)
         {
-            BadRequest();
+            return BadRequest();
         }
 
         _context.Entry(categoria).State = EntityState.Modified;

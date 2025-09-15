@@ -13,7 +13,7 @@ public class Produto
     public DateTime DataCadastro { get; set; }
 
 
-    public int? CategoryId { get; set; }
+    public int? CategoriaId { get; set; }
     [JsonIgnore]
     public Categoria? Categoria { get; set; }
 }

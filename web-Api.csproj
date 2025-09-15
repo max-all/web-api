@@ -24,4 +24,8 @@
     <None Include="C:\Users\amaxw\OneDrive\Documentos\Max_Tools\Repositories\web-Api\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

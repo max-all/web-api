@@ -52,9 +52,6 @@ namespace web_Api.Migrations
                     b.Property<int?>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 

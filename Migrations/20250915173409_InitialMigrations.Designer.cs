@@ -12,7 +12,7 @@ using web_Api.Data;
 namespace web_Api.Migrations
 {
     [DbContext(typeof(WebDbContext))]
-    [Migration("20250915035541_InitialMigrations")]
+    [Migration("20250915173409_InitialMigrations")]
     partial class InitialMigrations
     {
         /// <inheritdoc />
@@ -53,9 +53,6 @@ namespace web_Api.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CategoriaId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCadastro")

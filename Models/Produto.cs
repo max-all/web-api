@@ -1,4 +1,6 @@
-﻿namespace web_Api.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace web_Api.Models;
 
 public class Produto
 {
@@ -12,5 +14,6 @@ public class Produto
 
 
     public int? CategoryId { get; set; }
+    [JsonIgnore]
     public Categoria? Categoria { get; set; }
 }

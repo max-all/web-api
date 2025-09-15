@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace web_Api.Models;
 
@@ -8,10 +9,16 @@ public class Categoria
     {
         Produtos = new Collection<Produto>();
     }
-    public int Id { get; set; }
-    public string? Nome { get; set; }
-    public string? ImagemUrl { get; set; }
 
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    [MaxLength(100)]
+    public string? Nome { get; set; }
+
+    [MaxLength(100)]
+    public string? ImagemUrl { get; set; }
 
     public ICollection<Produto>? Produtos { get; set; }
 }   

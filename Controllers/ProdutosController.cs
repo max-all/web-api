@@ -17,11 +17,11 @@ public class ProdutosController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Produto>> Get()
+    public async Task<ActionResult<IEnumerable<Produto>>> GetAsync()
     {
         try
         {
-            var produtos = _context.Produtos.AsNoTracking().ToList();
+            var produtos = await _context.Produtos.AsNoTracking().ToListAsync();
 
             if (produtos is null)
             {
@@ -38,11 +38,11 @@ public class ProdutosController : ControllerBase
     }
 
     [HttpGet("{id:int:min(1)}", Name = "GetNewProduto")]
-    public ActionResult<Produto> GetById(int id)
+    public async Task<ActionResult<Produto>> GetByIdAsync(int id)
     {
         try
         {
-            var produto = _context.Produtos.AsNoTracking().FirstOrDefault(p => p.Id == id);
+            var produto = await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
 
             if (produto is null)
             {

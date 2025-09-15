@@ -17,11 +17,11 @@ public class CategoriasController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Categoria>> Get()
+    public async Task<ActionResult<IEnumerable<Categoria>>> Get()
     {
         try
         {
-            var categorias = _context.Categorias.AsNoTracking().ToList();
+            var categorias = await _context.Categorias.AsNoTracking().ToListAsync();
 
             if (categorias is null)
             {
@@ -38,11 +38,11 @@ public class CategoriasController : ControllerBase
     }
 
     [HttpGet("produtos")]
-    public ActionResult<IEnumerable<Categoria>> GetByProductName()
+    public async Task<ActionResult<IEnumerable<Categoria>>> GetByProductName()
     {
         try
         {
-            var categorias = _context.Categorias.AsNoTracking().Include(p => p.Produtos).ToList();
+            var categorias = await _context.Categorias.AsNoTracking().Include(p => p.Produtos).ToListAsync();
 
             if (categorias is null)
             {
@@ -59,11 +59,11 @@ public class CategoriasController : ControllerBase
     }
 
     [HttpGet("{id:int:min(1)}", Name = "GetNewCategoria")]
-    public ActionResult<Categoria> GetById(int id)
+    public async Task<ActionResult<Categoria>> GetById(int id)
     {
         try
         {
-            var categoria = _context.Categorias.AsNoTracking().FirstOrDefault(c => c.Id == id);
+            var categoria = await _context.Categorias.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
 
             if (categoria is null)
             {

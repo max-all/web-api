@@ -58,7 +58,7 @@ public class CategoriasController : ControllerBase
         }
     }
 
-    [HttpGet("{id:int}", Name = "GetNewCategoria")]
+    [HttpGet("{id:int:min(1)}", Name = "GetNewCategoria")]
     public ActionResult<Categoria> GetById(int id)
     {
         try
@@ -100,7 +100,7 @@ public class CategoriasController : ControllerBase
         }
     }
 
-    [HttpPut("{id:int}")]
+    [HttpPut("{id:int:min(1)}")]
     public ActionResult Put(int id, Categoria categoria)
     {
         try
@@ -122,7 +122,7 @@ public class CategoriasController : ControllerBase
         }
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete("{id:int:min(1)}")]
     public ActionResult Delete(int id)
     {
         try

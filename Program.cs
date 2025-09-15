@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using web_Api.Data;
+using web_Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ConfigureExceptionHandler();
 
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<WebDbContext>();

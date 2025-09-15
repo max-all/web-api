@@ -36,6 +36,24 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "DockerUp": {
+      "commandName": "Executable",
+      "executablePath": "docker-compose",
+      "commandLineArgs": "up -d",
+      "workingDirectory": "$(ProjectDir)"
+    },
+    "DockerDown": {
+      "commandName": "Executable",
+      "executablePath": "docker-compose",
+      "commandLineArgs": "down",
+      "workingDirectory": "$(ProjectDir)"
+    },
+    "DockerDownReset": {
+      "commandName": "Executable",
+      "executablePath": "docker-compose",
+      "commandLineArgs": "down -v",
+      "workingDirectory": "$(ProjectDir)"
     }
   }
 }

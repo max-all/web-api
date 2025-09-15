@@ -19,109 +19,69 @@ public class ProdutosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Produto>>> GetAsync()
     {
-        try
-        {
-            var produtos = await _context.Produtos.AsNoTracking().ToListAsync();
+        var produtos = await _context.Produtos.AsNoTracking().ToListAsync();
 
-            if (produtos is null)
-            {
-                return NotFound("Produtos não encontrados...");
-            }
-
-            return Ok(produtos);
-        }
-        catch (Exception)
+        if (produtos is null)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "Erro ao tratar a sua solicitação");
+            return NotFound("Produtos não encontrados...");
         }
+
+        return Ok(produtos);
     }
 
     [HttpGet("{id:int:min(1)}", Name = "GetNewProduto")]
     public async Task<ActionResult<Produto>> GetByIdAsync(int id)
     {
-        try
-        {
-            var produto = await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+        var produto = await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
 
-            if (produto is null)
-            {
-                return NotFound($"Produto de ID:{id} não encontrado...");
-            }
-
-            return Ok(produto);
-        }
-        catch (Exception)
+        if (produto is null)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "Erro ao tratar a sua solicitação");    
+            return NotFound($"Produto de ID:{id} não encontrado...");
         }
+
+        return Ok(produto);
     }
 
     [HttpPost]
     public ActionResult Post(Produto produto)
     {
-        try
-        {
-            if (produto is null)
-                return BadRequest("Dados Invalidos");
+        if (produto is null)
+            return BadRequest("Dados Invalidos");
 
-            _context.Produtos.Add(produto);
-            _context.SaveChanges();
+        _context.Produtos.Add(produto);
+        _context.SaveChanges();
 
-            return new CreatedAtRouteResult("GetNewProduto",
-                new { id = produto.Id }, produto);
-        }
-        catch (Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "Erro ao tratar a sua solicitação");
-        }
+        return new CreatedAtRouteResult("GetNewProduto",
+            new { id = produto.Id }, produto);
     }
 
     [HttpPut("{id:int:min(1)}")]
     public ActionResult Put(int id, Produto produto)
     {
-        try
+        if (id != produto.Id)
         {
-            if (id != produto.Id)
-            {
-                return BadRequest("Dados Invalidos");
-            }
-
-            _context.Entry(produto).State = EntityState.Modified;
-            _context.SaveChanges();
-
-            return Ok(produto);
+            return BadRequest("Dados Invalidos");
         }
-        catch (Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "Erro ao tratar a sua solicitação");
-        }
+
+        _context.Entry(produto).State = EntityState.Modified;
+        _context.SaveChanges();
+
+        return Ok(produto);
     }
 
     [HttpDelete("{id:int:min(1)}")]
     public ActionResult Delete(int id)
     {
-        try
+        var produto = _context.Produtos.FirstOrDefault(p => p.Id == id);
+
+        if (produto is null)
         {
-            var produto = _context.Produtos.FirstOrDefault(p => p.Id == id);
-
-            if (produto is null)
-            {
-                return NotFound($"Produto de ID:{id} não encontrado...");
-            }
-
-            _context.Produtos.Remove(produto);
-            _context.SaveChanges();
-
-            return Ok(produto);
+            return NotFound($"Produto de ID:{id} não encontrado...");
         }
-        catch (Exception)
-        {   
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                "Erro ao tratar a sua solicitação");
-        }
+
+        _context.Produtos.Remove(produto);
+        _context.SaveChanges();
+
+        return Ok(produto);
     }
 }

@@ -19,7 +19,7 @@ public class CategoriasController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<Categoria>> Get()
     {
-        var categorias = _context.Categorias.ToList();
+        var categorias = _context.Categorias.AsNoTracking().ToList();
 
         if(categorias is null)
         {
@@ -32,7 +32,7 @@ public class CategoriasController : ControllerBase
     [HttpGet("produtos")]
     public ActionResult<IEnumerable<Categoria>> GetByProductName()
     {
-        var categorias = _context.Categorias.Include(p => p.Produtos).ToList();
+        var categorias = _context.Categorias.AsNoTracking().Include(p => p.Produtos).ToList();
 
         if (categorias is null)
         {
@@ -45,7 +45,7 @@ public class CategoriasController : ControllerBase
     [HttpGet("{id:int}", Name = "GetNewCategoria")]
     public ActionResult<Categoria> GetById(int id)
     {
-        var categoria = _context.Categorias.FirstOrDefault(c => c.Id == id);
+        var categoria = _context.Categorias.AsNoTracking().FirstOrDefault(c => c.Id == id);
 
         if(categoria is null)
         {
